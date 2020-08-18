@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<table id="mainTable">
+			<tbody id="leaderboardTable" style="display: flex; flex-direction: column-reverse;">
+			</tbody>
+		</table>
+		<script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/6.4.2/firebase-database.js"></script>
+		<script type="text/javascript">
+			var firebaseConfig = {
+			apiKey: "AIzaSyCmpzxIQ6vGCc4YYwAczrz_44jsaPKu4TU",
+			authDomain: "leaderboard-a6e38.firebaseapp.com",
+			databaseURL: "https://leaderboard-a6e38.firebaseio.com",
+			projectId: "leaderboard-a6e38",
+			storageBucket: "",
+			messagingSenderId: "1026901674087",
+			appId: "1:1026901674087:web:521911fb9b60c2be"
+			};
+			firebase.initializeApp(firebaseConfig);
+
+			var query = firebase.database().ref('players/').orderByChild('score');
+        	query.on('child_added', function(snap) {
+	            var user = snap.val(); //Gets the values of all the parameters of the child
+	            var table = document.getElementById("leaderboardTable"); //The leaderboard tablebody
+	            var createTr = document.createElement("tr"); //Creates a table row for the child
+	            var createTdTeam = document.createElement("td");
+	            createTdTeam.innerHTML = user.teamName;
+	            createTr.appendChild(createTdTeam);
+	            var createTdScore = document.createElement("td");
+	            createTdScore.innerHTML = user.score;
+	            createTr.appendChild(createTdScore);
+	            table.appendChild(createTr);
+	            console.log(user.score);
+        });
+		</script>
+		<style type="text/css">
+			body {
+				font-family: 'Ubuntu', sans-serif;
+				text-align: center;
+				width: 100%;
+				padding: 0;
+				margin: 0;
+				background-color: rgba(0,0,0);
+				color: #cccccc;
+			}
+			table {
+				width: 100%;
+				max-width: 700px;
+				margin: 0 auto;
+				padding-right: 20px;
+			}
+			tr {
+				height: 50px;
+			}
+			td {
+				width: 400px;
+			}
+		</style>
+	</body>
+</html>
