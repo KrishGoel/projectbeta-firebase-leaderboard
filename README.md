@@ -1,5 +1,6 @@
-# firebaseLeaderboard
+# ProjectBeta Firebase Leaderboard
 > ⛔ Don't open this ISTG
+
 > https://projectbeta.tech/leaderboard
 
 This is an <iframe> webpage plugin for the participants leaderboard. It is highkey trash and uses manual updation using Firebase.
